@@ -1,0 +1,11 @@
+*.o
+*.swp
+CMakeCache.txt
+CMakeFiles
+CTestTestfile.cmake
+Makefile
+Testing
+apitest
+cmake_install.cmake
+*.so
+*.so.*
