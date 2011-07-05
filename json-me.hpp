@@ -32,9 +32,20 @@ namespace jsonme {
       virtual bool isNull()=0;
   };
   //A value semantics proxy to the implementation specific scalar.
+  class Scalar;
+  class NullScalar: public AbstractScalar {
+        public:
+          jsonme::scalartype scalartype(){ return NULLVAL;}
+          operator long double(){ return 0;}
+          operator long long(){ return 0;}
+          operator std::string(){ return "";}
+          operator bool(){ return false;}
+          bool isNull(){ return true;}
+  };  
   class Scalar: public AbstractScalar  {
       boost::shared_ptr<AbstractScalar> mScalar;
     public:
+      Scalar();
       Scalar(AbstractScalar *scalar);
       jsonme::scalartype scalartype();
       operator long double();
@@ -62,6 +73,17 @@ namespace jsonme {
   };
   //A value semantics proxy to the implementation specific node.
   class Node: public AbstractNode, public AbstractScalar {
+    public:
+      Node();
+    private:
+      class NullNode: public AbstractNode {
+        public:
+          jsonme::nodetype nodetype() {return INVALID;}
+          Node operator[](std::string name) { return Node();}
+          size_t size() { return 0;}
+          Node operator[](size_t index) { return Node();}
+          operator Scalar() { return Scalar(); }
+      };
       boost::shared_ptr<AbstractNode> mNode;
     public:
       Node(AbstractNode *node);

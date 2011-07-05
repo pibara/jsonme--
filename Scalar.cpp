@@ -1,6 +1,7 @@
 #include "json-me.hpp"
 
 namespace jsonme {
+      Scalar::Scalar():mScalar(new NullScalar()){}
       Scalar::Scalar(AbstractScalar *scalar):mScalar(scalar){}
       jsonme::scalartype Scalar::scalartype() {
         return mScalar->scalartype();

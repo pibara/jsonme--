@@ -1,67 +1,25 @@
 {
     "devices": {
-        "clients": [
-            {
-                "device": "eth0", 
-                "groupname": "wankers", 
-                "ip": "192.168.122.1", 
-                "net": "192.168.122.0/24"
-            }, 
-            {
-                "device": "eth1", 
-                "groupname": "tossers", 
-                "ip": "192.168.56.1", 
-                "net": "192.168.56.0/24"
-            }
-        ], 
+        "clients": [], 
         "routers": {
-            "device": "eth2", 
+            "device": "eth0", 
             "groupname": "loop", 
-            "ip": "192.168.1.56", 
-            "net": "192.168.1.0/24"
+            "ip": "192.168.178.23", 
+            "net": "192.168.178.0/24"
         }
     }, 
-    "disabled": 0, 
     "gateways": [
         {
-            "allowedgroups": [
-                "wankers", 
-                "tossers"
-            ], 
-            "ip": "192.168.1.254", 
+            "allowedgroups": [], 
+            "ip": "192.168.178.1", 
             "name": "gateway1", 
             "tableno": 1
         }, 
         {
-            "allowedgroups": [
-                "wankers", 
-                "tossers"
-            ], 
-            "ip": "192.168.1.5", 
+            "allowedgroups": [], 
+            "ip": "INVALID", 
             "name": "parkip", 
             "tableno": 2
         }
-    ], 
-    "localdns": {
-        "10.IN-ADDR.ARPA": {
-            "myip": "192.168.1.56", 
-            "serverip": "192.168.1.6"
-        }, 
-        "16.172.IN-ADDR.ARPA": {
-            "myip": "192.168.1.56", 
-            "serverip": "192.168.1.6"
-        }, 
-        "168.192.IN-ADDR.ARPA": {
-            "myip": "192.168.1.56", 
-            "serverip": "192.168.1.6"
-        }, 
-        "LOCAL": {
-            "myip": "192.168.1.56", 
-            "serverip": "192.168.1.6"
-        }, 
-        "VPN": {
-            "myip": "192.168.1.56", 
-            "serverip": "192.168.1.6"
-        }
-    }
+    ]
 }

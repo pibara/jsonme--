@@ -1,6 +1,7 @@
 #include "json-me.hpp"
 
 namespace jsonme {
+      Node::Node():mNode(new NullNode()){}
       Node::Node(AbstractNode *node):mNode(node){}
       jsonme::nodetype Node::nodetype() {
          return mNode->nodetype();

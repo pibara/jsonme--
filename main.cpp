@@ -3,6 +3,7 @@
 int main(int argc,char **argv) {
   jsonme::JsonMeLib jsonlib;
   jsonme::Node rootnode=jsonlib.parseFile("example.json");
+  std::cerr << "Root node acquired, starting." << std::endl;
   bool disabled=rootnode["disabled"];
   std::cerr << "disabled:" << disabled << std::endl;
   size_t numberofclients=rootnode["devices"]["clients"].size();
