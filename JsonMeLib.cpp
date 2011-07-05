@@ -17,10 +17,10 @@ namespace jsonme {
   JsonMeLib::~JsonMeLib() {
     delete mLibImpl;
   }
-  Node JsonMeLib::parse(std::string jsonstring){
+  Node JsonMeLib::parse(std::string const & jsonstring) const {
     return mLibImpl->parse(jsonstring);
   }
-  Node JsonMeLib::parseFile(std::string path) {
+  Node JsonMeLib::parseFile(std::string const & path) const {
     return mLibImpl->parseFile( path);
   }
 }

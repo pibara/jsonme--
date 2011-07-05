@@ -8,11 +8,10 @@ namespace jsonme {
     GobjectLibImpl::GobjectLibImpl() {
       g_type_init ();
     }
-    AbstractNode *GobjectLibImpl::parse(std::string jsonstring) {
+    AbstractNode *GobjectLibImpl::parse(std::string const & jsonstring) const {
       return new GobjectImplStringTopNode(jsonstring);
     }
-    AbstractNode *GobjectLibImpl::parseFile(std::string path) {
-      
+    AbstractNode *GobjectLibImpl::parseFile(std::string const & path) const { 
       return new GobjectImplFsTopNode(path); 
     }
   }

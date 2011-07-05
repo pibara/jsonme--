@@ -6,16 +6,16 @@
 namespace jsonme {
   namespace impl {
     class GobjectImplScalar: public AbstractScalar {
-         JsonNode *mNode;
+         JsonNode * const mNode;
          GValue mValue;
        public:
-         GobjectImplScalar(JsonNode *node);
-         jsonme::scalartype scalartype();
-         operator long double();
-         operator long long();
-         operator std::string();
-         operator bool();
-         bool isNull();   
+         GobjectImplScalar(JsonNode * const node);
+         jsonme::scalartype scalartype() const;
+         operator long double() const;
+         operator long long() const;
+         operator std::string() const;
+         operator bool() const;
+         bool isNull() const;   
     };
   }
 }

@@ -4,9 +4,9 @@
 #include "GobjectImplScalar.hpp"
 namespace jsonme {
   namespace impl {
-     GobjectImplNode::GobjectImplNode(JsonNode *node):mNode(node) {
+     GobjectImplNode::GobjectImplNode(JsonNode * const node):mNode(node) {
      } 
-     jsonme::nodetype GobjectImplNode::nodetype() {
+     jsonme::nodetype GobjectImplNode::nodetype() const {
         if (!mNode) {
            return  jsonme::INVALID;
         }
@@ -18,7 +18,7 @@ namespace jsonme {
         }
         return  jsonme::INVALID;
      }
-     Node GobjectImplNode::operator[](std::string name) {
+     Node GobjectImplNode::operator[](std::string const & name) const {
         if (!mNode) {
           return Node();
         }
@@ -34,7 +34,7 @@ namespace jsonme {
           return Node();
         }
      }
-     size_t GobjectImplNode::size() {
+     size_t GobjectImplNode::size() const {
         if (!mNode) {
            return 0;
         }
@@ -45,7 +45,7 @@ namespace jsonme {
           return 0;
         }
      }
-     Node GobjectImplNode::operator[](size_t index) {
+     Node GobjectImplNode::operator[](size_t index) const {
         if (!mNode) {
            return Node(new GobjectImplNode(mNode));
         }
@@ -61,7 +61,7 @@ namespace jsonme {
           return Node();
         }
      }
-     GobjectImplNode::operator Scalar() {
+     GobjectImplNode::operator Scalar() const {
         if (this->nodetype() == jsonme::SCALAR) {
           return Scalar(new GobjectImplScalar(mNode));
         } else {

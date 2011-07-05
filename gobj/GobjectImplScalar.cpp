@@ -2,12 +2,12 @@
 #include <boost/lexical_cast.hpp>
 namespace jsonme {
   namespace impl {
-    GobjectImplScalar::GobjectImplScalar(JsonNode *node):mNode(node),mValue(){
+    GobjectImplScalar::GobjectImplScalar(JsonNode  * const node):mNode(node),mValue(){
        if (mNode && JSON_NODE_HOLDS_VALUE(mNode)) {
           json_node_get_value(mNode,&mValue);
        }
     }
-    jsonme::scalartype GobjectImplScalar::scalartype() {
+    jsonme::scalartype GobjectImplScalar::scalartype() const {
        switch (json_node_get_value_type(mNode)) {
          case G_TYPE_BOOLEAN :
              return jsonme::BOOL;
@@ -26,7 +26,7 @@ namespace jsonme {
              return jsonme::NULLVAL;
        }
     }
-    GobjectImplScalar::operator long double(){
+    GobjectImplScalar::operator long double() const {
        switch (json_node_get_value_type(mNode)) {
           case G_TYPE_FLOAT: return g_value_get_float(&mValue);
           case G_TYPE_DOUBLE: return g_value_get_double(&mValue);
@@ -40,7 +40,7 @@ namespace jsonme {
           default: return 0.0;
        }
     }
-    GobjectImplScalar::operator long long(){
+    GobjectImplScalar::operator long long() const {
        switch (json_node_get_value_type(mNode)) {
          case G_TYPE_FLOAT: return 0;  //Fixme, probably an exception is in place.
          case G_TYPE_DOUBLE: return 0; //Fixme, probably an exception is in place.
@@ -54,7 +54,7 @@ namespace jsonme {
          default: return 0;
        }
     }
-    GobjectImplScalar::operator std::string(){
+    GobjectImplScalar::operator std::string() const {
        if (! mNode) {
           return "";
        }
@@ -71,7 +71,7 @@ namespace jsonme {
           default: return "";
        }
     }
-    GobjectImplScalar::operator bool(){
+    GobjectImplScalar::operator bool() const {
       switch (json_node_get_value_type(mNode)) {
         case G_TYPE_FLOAT: return false;
         case G_TYPE_DOUBLE: return false;
@@ -85,7 +85,7 @@ namespace jsonme {
         default: return false;
       }
     }
-    bool GobjectImplScalar::isNull(){
+    bool GobjectImplScalar::isNull() const {
        if (json_node_is_null(mNode)) {
          return true;
        }

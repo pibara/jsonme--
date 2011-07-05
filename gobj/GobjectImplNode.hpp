@@ -6,14 +6,14 @@
 namespace jsonme {
   namespace impl {
     class GobjectImplNode: public AbstractNode {
-        JsonNode *mNode;
+        JsonNode * const mNode;
       public:
-        GobjectImplNode(JsonNode *node);
-        jsonme::nodetype nodetype();
-        Node operator[](std::string name);
-        size_t size();
-        Node operator[](size_t index);
-        operator Scalar();
+        GobjectImplNode(JsonNode * const node);
+        jsonme::nodetype nodetype() const ;
+        Node operator[](std::string const & name) const ;
+        size_t size() const;
+        Node operator[](size_t index) const ;
+        operator Scalar() const;
     };
   }
 }

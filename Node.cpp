@@ -3,45 +3,45 @@
 namespace jsonme {
       Node::Node():mNode(new NullNode()){}
       Node::Node(AbstractNode *node):mNode(node){}
-      jsonme::nodetype Node::nodetype() {
+      jsonme::nodetype Node::nodetype() const {
          return mNode->nodetype();
       }
-      Node Node::operator[](std::string name){
+      Node Node::operator[](std::string const & name) const {
          return (*mNode)[name];
       }
-      Node Node::operator[](const char *name) {
+      Node Node::operator[](char const * const name) const {
          return (*mNode)[std::string(name)];
       }
-      size_t Node::size(){
+      size_t Node::size() const {
         return mNode->size();
       }
-      Node Node::operator[](size_t index){
+      Node Node::operator[](size_t index) const {
         return (*mNode)[index];
       }
-      Node::operator Scalar() {
+      Node::operator Scalar() const {
         return (*mNode);
       }
-      jsonme::scalartype Node::scalartype(){
+      jsonme::scalartype Node::scalartype() const{
         Scalar s(*mNode);
         return s.scalartype();
       }
-      Node::operator long double() {
+      Node::operator long double() const {
         Scalar s(*mNode);
         return s;
       }
-      Node::operator long long() {
+      Node::operator long long() const {
         Scalar s(*mNode);
         return s;
       }
-      Node::operator std::string() {
+      Node::operator std::string() const {
         Scalar s(*mNode);
         return s;
       }
-      Node::operator bool() {
+      Node::operator bool() const {
         Scalar s(*mNode);
         return s;
       }
-      bool Node::isNull() {
+      bool Node::isNull() const {
         Scalar s(*mNode);
         return s.isNull();
       }

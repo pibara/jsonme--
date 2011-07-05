@@ -8,15 +8,15 @@ namespace jsonme {
   namespace impl {
     class GobjectImplStringTopNode: public jsonme::AbstractNode {
         GobjectImplParser mParser;
-        GobjectImplNode *mRoot;
+        GobjectImplNode const * mRoot;
       public:
-        GobjectImplStringTopNode(std::string jsonstring);
+        GobjectImplStringTopNode(std::string const & jsonstring);
         ~GobjectImplStringTopNode();
-        jsonme::nodetype nodetype();
-        Node operator[](std::string name);
-        size_t size();
-        Node operator[](size_t index);
-        operator Scalar();
+        jsonme::nodetype nodetype() const ;
+        Node operator[](std::string const & name) const ;
+        size_t size() const;
+        Node operator[](size_t index) const;
+        operator Scalar() const;
     };
   }
 }

@@ -24,35 +24,35 @@ namespace jsonme {
   class AbstractScalar {
     public:
       virtual ~AbstractScalar(){}
-      virtual jsonme::scalartype scalartype()=0;
-      virtual operator long double()=0;
-      virtual operator long long()=0;
-      virtual operator std::string()=0;
-      virtual operator bool()=0;
-      virtual bool isNull()=0;
+      virtual jsonme::scalartype scalartype() const=0;
+      virtual operator long double() const=0;
+      virtual operator long long() const=0;
+      virtual operator std::string() const=0;
+      virtual operator bool() const=0;
+      virtual bool isNull() const=0;
   };
   //A value semantics proxy to the implementation specific scalar.
   class Scalar;
   class NullScalar: public AbstractScalar {
         public:
-          jsonme::scalartype scalartype(){ return NULLVAL;}
-          operator long double(){ return 0;}
-          operator long long(){ return 0;}
-          operator std::string(){ return "";}
-          operator bool(){ return false;}
-          bool isNull(){ return true;}
+          jsonme::scalartype scalartype() const { return NULLVAL;}
+          operator long double() const { return 0;}
+          operator long long() const { return 0;}
+          operator std::string() const { return "";}
+          operator bool() const { return false;}
+          bool isNull() const { return true;}
   };  
   class Scalar: public AbstractScalar  {
       boost::shared_ptr<AbstractScalar> mScalar;
     public:
       Scalar();
       Scalar(AbstractScalar *scalar);
-      jsonme::scalartype scalartype();
-      operator long double();
-      operator long long();
-      operator std::string();
-      operator bool();
-      bool isNull();
+      jsonme::scalartype  scalartype() const;
+      operator long double() const;
+      operator long long() const;
+      operator std::string() const;
+      operator bool() const;
+      bool isNull() const;
   };
   //A json node is either an object, an array or a scalar.
   typedef enum {OBJECT,ARRAY,SCALAR,INVALID} nodetype;
@@ -65,11 +65,11 @@ namespace jsonme {
   class AbstractNode {
     public:
         virtual ~AbstractNode(){}
-        virtual jsonme::nodetype nodetype()=0;
-        virtual Node operator[](std::string name)=0;
-        virtual size_t size()=0;
-        virtual Node operator[](size_t index)=0;
-        virtual operator Scalar()=0;
+        virtual jsonme::nodetype nodetype() const=0;
+        virtual Node operator[](std::string const &  name) const=0;
+        virtual size_t size() const=0;
+        virtual Node operator[](size_t index) const=0;
+        virtual operator Scalar() const=0;
   };
   //A value semantics proxy to the implementation specific node.
   class Node: public AbstractNode, public AbstractScalar {
@@ -78,35 +78,35 @@ namespace jsonme {
     private:
       class NullNode: public AbstractNode {
         public:
-          jsonme::nodetype nodetype() {return INVALID;}
-          Node operator[](std::string name) { return Node();}
-          size_t size() { return 0;}
-          Node operator[](size_t index) { return Node();}
-          operator Scalar() { return Scalar(); }
+          jsonme::nodetype nodetype() const {return INVALID;}
+          Node operator[](std::string const & name) const { return Node();}
+          size_t size() const { return 0;}
+          Node operator[](size_t index) const { return Node();}
+          operator Scalar() const { return Scalar(); }
       };
       boost::shared_ptr<AbstractNode> mNode;
     public:
       Node(AbstractNode *node);
-      jsonme::nodetype nodetype();
-      Node operator[](std::string name);
-      Node operator[](const char *);
-      size_t size();
-      Node operator[](size_t index);
-      jsonme::scalartype scalartype();
-      operator Scalar();
-      operator long double();
-      operator long long();
-      operator std::string();
-      operator bool();
-      bool isNull();
+      jsonme::nodetype nodetype() const;
+      Node operator[](std::string const & name) const;
+      Node operator[](char const * const) const;
+      size_t size() const;
+      Node operator[](size_t index) const ;
+      jsonme::scalartype scalartype() const;
+      operator Scalar() const;
+      operator long double() const;
+      operator long long() const;
+      operator std::string() const;
+      operator bool() const;
+      bool isNull() const;
   };
   //The impl namespace should be non of your concern.
   namespace impl {
     class AbstractLibImpl {
       public:
         virtual ~AbstractLibImpl(){}
-        virtual AbstractNode *parse(std::string jsonstring)=0;
-        virtual AbstractNode *parseFile(std::string jsonstring)=0;
+        virtual AbstractNode *parse(std::string const &  jsonstring) const =0;
+        virtual AbstractNode *parseFile(std::string const & jsonstring) const=0;
     };
   };
   //Wrapper class for an available low level json library.
@@ -115,8 +115,8 @@ namespace jsonme {
     public:
       JsonMeLib();
       ~JsonMeLib();
-      Node parse(std::string jsonstring);
-      Node parseFile(std::string path);
+      Node parse(std::string const & jsonstring) const;
+      Node parseFile(std::string const & path) const;
   };
 }
 

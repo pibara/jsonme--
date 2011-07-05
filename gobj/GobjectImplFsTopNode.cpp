@@ -4,7 +4,7 @@
 #include "GobjectImplScalar.hpp"
 namespace jsonme {
   namespace impl {
-     GobjectImplFsTopNode::GobjectImplFsTopNode(std::string path):mRoot(0) {
+     GobjectImplFsTopNode::GobjectImplFsTopNode(std::string const & path):mRoot(0) {
        GobjectImplError lerror;
        json_parser_load_from_file (mParser,path.c_str(), lerror.errorp());
        if (lerror.error()) {
@@ -15,19 +15,19 @@ namespace jsonme {
      GobjectImplFsTopNode::~GobjectImplFsTopNode() {
        delete mRoot;
      }
-     jsonme::nodetype GobjectImplFsTopNode::nodetype() {
+     jsonme::nodetype GobjectImplFsTopNode::nodetype() const {
         return mRoot->nodetype();
      }
-     Node GobjectImplFsTopNode::operator[](std::string name) {
+     Node GobjectImplFsTopNode::operator[](std::string const & name) const {
         return (*mRoot)[name];
      }
-     size_t GobjectImplFsTopNode::size() {
+     size_t GobjectImplFsTopNode::size() const {
         return mRoot->size();
      }
-     Node GobjectImplFsTopNode::operator[](size_t index) {
+     Node GobjectImplFsTopNode::operator[](size_t index) const {
         return (*mRoot)[index];
      }
-     GobjectImplFsTopNode::operator Scalar() {
+     GobjectImplFsTopNode::operator Scalar() const {
         return (*mRoot);
      }
   }
