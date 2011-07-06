@@ -6,6 +6,9 @@ namespace jsonme {
       jsonme::nodetype Node::nodetype() const {
          return mNode->nodetype();
       }
+      AbstractKeys & Node::keys() {
+          return mNode->keys();
+      }
       Node Node::operator[](std::string const & name) const {
          return (*mNode)[name];
       }

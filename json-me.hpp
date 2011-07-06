@@ -57,6 +57,16 @@ namespace jsonme {
   //A json node is either an object, an array or a scalar.
   typedef enum {OBJECT,ARRAY,SCALAR,INVALID} nodetype;
 
+  class AbstractKeys {
+    public:
+      virtual std::string operator[](size_t index) const=0;
+      virtual size_t size() const=0;
+  };
+  class NullKeys: public AbstractKeys {
+    public:
+     std::string operator[](size_t index) const { return "";}
+     size_t size() const{ return 0;}
+  };
   class Node;
   //The node has a type, and depending on its type can:
   //* SCALAR: be cast to a Scalar
@@ -65,6 +75,7 @@ namespace jsonme {
   class AbstractNode {
     public:
         virtual ~AbstractNode(){}
+        virtual AbstractKeys & keys()=0;
         virtual jsonme::nodetype nodetype() const=0;
         virtual Node operator[](std::string const &  name) const=0;
         virtual size_t size() const=0;
@@ -77,7 +88,9 @@ namespace jsonme {
       Node();
     private:
       class NullNode: public AbstractNode {
+          NullKeys mNullKeys;
         public:
+          AbstractKeys & keys() { return mNullKeys;}
           jsonme::nodetype nodetype() const {return INVALID;}
           Node operator[](std::string const & name) const { return Node();}
           size_t size() const { return 0;}
@@ -87,6 +100,7 @@ namespace jsonme {
       boost::shared_ptr<AbstractNode> mNode;
     public:
       Node(AbstractNode *node);
+      AbstractKeys & keys();
       jsonme::nodetype nodetype() const;
       Node operator[](std::string const & name) const;
       Node operator[](char const * const) const;

@@ -9,9 +9,11 @@ namespace jsonme {
     class GobjectImplStringTopNode: public jsonme::AbstractNode {
         GobjectImplParser mParser;
         GobjectImplNode const * mRoot;
+        NullKeys mNullKeys;
       public:
         GobjectImplStringTopNode(std::string const & jsonstring);
         ~GobjectImplStringTopNode();
+        AbstractKeys &keys() { return mNullKeys;}
         jsonme::nodetype nodetype() const ;
         Node operator[](std::string const & name) const ;
         size_t size() const;

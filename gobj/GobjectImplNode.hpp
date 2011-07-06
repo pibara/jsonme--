@@ -7,8 +7,10 @@ namespace jsonme {
   namespace impl {
     class GobjectImplNode: public AbstractNode {
         JsonNode * const mNode;
+        NullKeys mNullKeys;
       public:
         GobjectImplNode(JsonNode * const node);
+        AbstractKeys &keys() { return mNullKeys;}
         jsonme::nodetype nodetype() const ;
         Node operator[](std::string const & name) const ;
         size_t size() const;
