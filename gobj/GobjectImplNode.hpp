@@ -3,15 +3,15 @@
 #include "../json-me.hpp"
 #include <glib-object.h>
 #include <json-glib/json-glib.h>
-#include "../NullKeys.hpp"
+#include "GobjectImplKeys.hpp"
 namespace jsonme {
   namespace impl {
     class GobjectImplNode: public AbstractNode {
         JsonNode * const mNode;
-        NullKeys mNullKeys;
+        GobjectImplKeys mKeys;
       public:
         GobjectImplNode(JsonNode * const node);
-        AbstractKeys &keys() { return mNullKeys;}
+        AbstractKeys &keys() { return mKeys;}
         jsonme::nodetype nodetype() const ;
         Node operator[](std::string const & name) const ;
         size_t size() const;

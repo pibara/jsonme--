@@ -10,6 +10,7 @@ namespace jsonme {
          GValue mValue;
        public:
          GobjectImplScalar(JsonNode * const node);
+         ~GobjectImplScalar() throw();
          jsonme::scalartype scalartype() const;
          operator long double() const;
          operator long long() const;

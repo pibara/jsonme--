@@ -7,6 +7,9 @@ namespace jsonme {
           json_node_get_value(mNode,&mValue);
        }
     }
+    GobjectImplScalar::~GobjectImplScalar() throw() {
+      g_value_unset(&mValue);
+    }
     jsonme::scalartype GobjectImplScalar::scalartype() const {
        switch (json_node_get_value_type(mNode)) {
          case G_TYPE_BOOLEAN :

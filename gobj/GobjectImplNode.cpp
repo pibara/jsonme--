@@ -4,7 +4,7 @@
 #include "GobjectImplScalar.hpp"
 namespace jsonme {
   namespace impl {
-     GobjectImplNode::GobjectImplNode(JsonNode * const node):mNode(node) {
+     GobjectImplNode::GobjectImplNode(JsonNode * const node):mNode(node),mKeys(node) {
      } 
      jsonme::nodetype GobjectImplNode::nodetype() const {
         if (!mNode) {

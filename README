@@ -5,8 +5,6 @@ It has the following issues that I might fix in a later release. Given that I do
 work on project like this and given that my priorities lie with different projects, you may consider
 it as a wishlist that if you like this library would make me very happy if you could contribute it:
 
-* Probably need to add a 'keys' method to AbstractNode so the user can find out what members a JSON 
-  object has. A 'has_key(std::string keyy)' might be usefull to possibly. 
 * I didn't find a list of the Gtype's that json-glib can produce, there are probably some pieces of 
   dead code in gobj/GobjectImplScalar.cpp and there might be one missing.
 * I didn't write any unit tests. All I wrote was a litle tiny program for a basic API test. 

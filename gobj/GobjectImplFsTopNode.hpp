@@ -8,11 +8,10 @@ namespace jsonme {
     class GobjectImplFsTopNode: public jsonme::AbstractNode {
         GobjectImplParser mParser;
         GobjectImplNode *mRoot;
-        NullKeys mNullKeys;
       public:
         GobjectImplFsTopNode(std::string const & jsonstring);
         ~GobjectImplFsTopNode() throw();
-        AbstractKeys &keys() { return mNullKeys;}
+        AbstractKeys &keys();
         jsonme::nodetype nodetype() const;
         Node operator[](std::string const & name) const;
         size_t size() const;

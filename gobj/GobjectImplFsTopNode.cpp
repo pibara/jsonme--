@@ -30,5 +30,8 @@ namespace jsonme {
      GobjectImplFsTopNode::operator Scalar() const {
         return (*mRoot);
      }
+     AbstractKeys &GobjectImplFsTopNode::keys() { 
+        return mRoot->keys();
+     }
   }
 }

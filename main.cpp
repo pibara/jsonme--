@@ -17,6 +17,18 @@ int main(int argc,char **argv) {
     std::cerr << "client net: " << device << std::endl << "\tgroup\t:\t" <<  group << std::endl <<"\tip\t:\t" << ip << std::endl << "\tnet\t:\t" << net << std::endl;
   }
   jsonme::Node router=rootnode["devices"]["routers"];
+  if (router.keys().size() < 4) {
+    std::cerr << "No keys returned from routers." << std::endl;;
+    return 1;
+  }
+  for (int keyindex=0;keyindex < router.keys().size() ; keyindex++) {
+     std::cerr << "keys[" << keyindex << "] : " << std::endl;
+     jsonme::AbstractKeys &keys=router.keys();
+     std::string key=keys[keyindex];
+     std::cerr << "    key=" << key << std::endl;
+     std::string val=router[key];
+     std::cerr << "    val=" << val << std::endl;
+  }
   std::string device=router["device"];
   std::string group=router["groupname"];
   std::string ip= router["ip"];
