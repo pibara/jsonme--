@@ -12,7 +12,7 @@ namespace jsonme {
        }
        mRoot=new GobjectImplNode(json_parser_get_root(mParser));
      } 
-     GobjectImplStringTopNode::~GobjectImplStringTopNode() {
+     GobjectImplStringTopNode::~GobjectImplStringTopNode() throw() {
        delete mRoot;
      }
      jsonme::nodetype GobjectImplStringTopNode::nodetype() const {

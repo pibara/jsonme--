@@ -14,9 +14,7 @@ namespace jsonme {
 #endif
 namespace jsonme {
   JsonMeLib::JsonMeLib():mLibImpl(new LibImpl()) {}
-  JsonMeLib::~JsonMeLib() {
-    delete mLibImpl;
-  }
+  JsonMeLib::~JsonMeLib() throw() {}
   Node JsonMeLib::parse(std::string const & jsonstring) const {
     return mLibImpl->parse(jsonstring);
   }

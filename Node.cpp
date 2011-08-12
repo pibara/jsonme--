@@ -1,6 +1,16 @@
 #include "json-me.hpp"
-
+#include "NullKeys.hpp"
 namespace jsonme {
+      class NullNode: public AbstractNode {
+          NullKeys mNullKeys;
+        public:
+          AbstractKeys & keys() { return mNullKeys;}
+          jsonme::nodetype nodetype() const {return INVALID;}
+          Node operator[](std::string const & name) const { return Node();}
+          size_t size() const { return 0;}
+          Node operator[](size_t index) const { return Node();}
+          operator Scalar() const { return Scalar(); }
+      };
       Node::Node():mNode(new NullNode()){}
       Node::Node(AbstractNode *node):mNode(node){}
       jsonme::nodetype Node::nodetype() const {

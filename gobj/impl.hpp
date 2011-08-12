@@ -8,8 +8,8 @@ namespace jsonme {
     class GobjectLibImpl: public AbstractLibImpl {
       public:
         GobjectLibImpl();
-        AbstractNode *parse(std::string const & jsonstring) const;
-        AbstractNode *parseFile(std::string const  & path) const ;
+        Node parse(std::string const & jsonstring) const;
+        Node parseFile(std::string const  & path) const ;
     };
   }
 }

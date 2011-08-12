@@ -11,7 +11,7 @@ namespace jsonme {
         NullKeys mNullKeys;
       public:
         GobjectImplFsTopNode(std::string const & jsonstring);
-        ~GobjectImplFsTopNode();
+        ~GobjectImplFsTopNode() throw();
         AbstractKeys &keys() { return mNullKeys;}
         jsonme::nodetype nodetype() const;
         Node operator[](std::string const & name) const;

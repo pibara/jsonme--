@@ -3,6 +3,7 @@
 #include "../json-me.hpp"
 #include <glib-object.h>
 #include <json-glib/json-glib.h>
+#include "../NullKeys.hpp"
 namespace jsonme {
   namespace impl {
     class GobjectImplNode: public AbstractNode {
