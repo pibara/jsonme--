@@ -6,7 +6,13 @@ It has the following issues that I might fix in a later release. Given that I do
 work on project like this and given that my priorities lie with different projects, you may consider
 it as a wishlist that if you like this library would make me very happy if you could contribute it:
 
+Before we release a 1.0 version:
+
 * Write some decent tests.
+* Create an ubuntu .deb package.
+
+After the 1.0 we may look at the following:
+
 * See if we can get stuff compiling with the -Wold-style-cast flag set.
 * I didn't find a list of the Gtype's that json-glib can produce, there are probably some pieces of 
   dead code in gobj/GobjectImplScalar.cpp and there might be one missing.
@@ -15,8 +21,9 @@ it as a wishlist that if you like this library would make me very happy if you c
 * I didn't create non of the operator<< stuff for making usage ostream usage easy. Tried to for half 
   an hour and kept getting useless messages from my compiler. Should make the library even more 
   friendly if we could fix this.
+* Currently only parsing is supported. We should expand the API to support 'creating' json strings and files.
 
-Seeing the above list, if you feel like fixing any of these problems, please feel free to do so and send  me your patches if you do.
+Seeing the above list, if you feel like fixing any of these issues, please feel free to do so and send  me your patches if you do.
 
 To build jsonme, take the following steps:
 
