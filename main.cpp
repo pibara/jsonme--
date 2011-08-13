@@ -21,7 +21,7 @@ int main(int argc,char **argv) {
     std::cerr << "No keys returned from routers." << std::endl;;
     return 1;
   }
-  for (int keyindex=0;keyindex < router.keys().size() ; keyindex++) {
+  for (size_t keyindex=0;keyindex < router.keys().size() ; keyindex++) {
      std::cerr << "keys[" << keyindex << "] : " << std::endl;
      jsonme::AbstractKeys &keys=router.keys();
      std::string key=keys[keyindex];
@@ -44,8 +44,8 @@ int main(int argc,char **argv) {
      std::cerr << "gateway: " << name << std::endl << "\tip\t:\t" << gip <<  std::endl << "\ttable\t:\t" << table << std::endl;
      size_t groupcount=gateway["allowedgroups"].size();
      for (size_t index2=0; index2 < groupcount; index2++) {
-       std::string group=gateway["allowedgroups"][index2];
-       std::cerr << "\tgroup\t:\t" << group << std::endl;
+       std::string group2=gateway["allowedgroups"][index2];
+       std::cerr << "\tgroup\t:\t" << group2 << std::endl;
      }
   }
   return 0;

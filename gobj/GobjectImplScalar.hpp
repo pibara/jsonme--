@@ -8,6 +8,8 @@ namespace jsonme {
     class GobjectImplScalar: public AbstractScalar {
          JsonNode * const mNode;
          GValue mValue;
+         GobjectImplScalar(const GobjectImplScalar &);
+         GobjectImplScalar & operator=(const GobjectImplScalar&);
        public:
          GobjectImplScalar(JsonNode * const node);
          ~GobjectImplScalar() throw();

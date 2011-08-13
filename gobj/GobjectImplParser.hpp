@@ -6,6 +6,8 @@ namespace jsonme {
   namespace impl {
      class GobjectImplParser {
         JsonParser *mParser; 
+        GobjectImplParser(const GobjectImplParser&);
+        GobjectImplParser & operator=(const GobjectImplParser&);
        public:
         GobjectImplParser();
         ~GobjectImplParser();

@@ -1,14 +1,15 @@
 This library is a wrapper for the json-glib library that aims tp provide the user with a trivial alternative API to the API provided by the base json-glib library.
 
-This is the first version of the json-me (JSON made easy) that I created as a weekend project.
+This is an early version of the json-me (JSON made easy) project.
+
 It has the following issues that I might fix in a later release. Given that I don't have much time to
 work on project like this and given that my priorities lie with different projects, you may consider
 it as a wishlist that if you like this library would make me very happy if you could contribute it:
 
+* Write some decent tests.
+* See if we can get stuff compiling with the -Wold-style-cast flag set.
 * I didn't find a list of the Gtype's that json-glib can produce, there are probably some pieces of 
   dead code in gobj/GobjectImplScalar.cpp and there might be one missing.
-* I didn't write any unit tests. All I wrote was a litle tiny program for a basic API test. 
-  Given the limited test coverage, there may still be some bugs in this library.
 * The CMakeLists.txt doesn't look for its dependencies and just adds -I flags that happen to be right 
   on Ubuntu 11.4. Should do some real checking.
 * I didn't create non of the operator<< stuff for making usage ostream usage easy. Tried to for half 

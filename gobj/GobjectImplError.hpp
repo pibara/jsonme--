@@ -5,6 +5,8 @@ namespace jsonme {
   namespace impl {
     class GobjectImplError {
         GError *mError;
+        GobjectImplError(const GobjectImplError&);
+        GobjectImplError &operator=(const GobjectImplError&);
       public:
         GobjectImplError();
         ~GobjectImplError();

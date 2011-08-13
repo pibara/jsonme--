@@ -9,6 +9,8 @@ namespace jsonme {
     class GobjectImplNode: public AbstractNode {
         JsonNode * const mNode;
         GobjectImplKeys mKeys;
+        GobjectImplNode(const GobjectImplNode&);
+        GobjectImplNode &operator=(const GobjectImplNode&);
       public:
         GobjectImplNode(JsonNode * const node);
         AbstractKeys &keys() { return mKeys;}

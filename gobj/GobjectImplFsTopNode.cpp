@@ -4,7 +4,7 @@
 #include "GobjectImplScalar.hpp"
 namespace jsonme {
   namespace impl {
-     GobjectImplFsTopNode::GobjectImplFsTopNode(std::string const & path):mRoot(0) {
+     GobjectImplFsTopNode::GobjectImplFsTopNode(std::string const & path):mParser(),mRoot(0) {
        GobjectImplError lerror;
        json_parser_load_from_file (mParser,path.c_str(), lerror.errorp());
        if (lerror.error()) {

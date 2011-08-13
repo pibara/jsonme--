@@ -4,6 +4,7 @@ namespace jsonme {
       class NullNode: public AbstractNode {
           NullKeys mNullKeys;
         public:
+          NullNode():mNullKeys(){}
           AbstractKeys & keys() { return mNullKeys;}
           jsonme::nodetype nodetype() const {return INVALID;}
           Node operator[](std::string const & name) const { return Node();}
