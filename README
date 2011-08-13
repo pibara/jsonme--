@@ -8,7 +8,6 @@ it as a wishlist that if you like this library would make me very happy if you c
 
 Before we release a 1.0 version:
 
-* Write some decent tests.
 * Create an ubuntu .deb package.
 
 After the 1.0 we may look at the following:

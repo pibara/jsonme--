@@ -9,3 +9,4 @@ apitest
 cmake_install.cmake
 *.so
 *.so.*
+build/test_*
