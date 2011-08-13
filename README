@@ -30,4 +30,13 @@ To build jsonme, take the following steps:
 
  make test
 
+The last step should depend on the platform you are on. If you don't hapen to be on a amd64 ubuntu linux platform, the following step 
+should be appropriate:
+
  sudo make install
+
+For amd64 ubuntu linux you may alternatively run: 
+
+  cd ..
+  ./makedepstuff.sh
+  dpkg -i jsonme++_0.9.0-1_amd64.deb
