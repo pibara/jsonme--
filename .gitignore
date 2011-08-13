@@ -10,3 +10,5 @@ cmake_install.cmake
 *.so
 *.so.*
 build/test_*
+jsonme++/usr/
+*.deb

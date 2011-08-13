@@ -6,10 +6,6 @@ It has the following issues that I might fix in a later release. Given that I do
 work on project like this and given that my priorities lie with different projects, you may consider
 it as a wishlist that if you like this library would make me very happy if you could contribute it:
 
-Before we release a 1.0 version:
-
-* Create an ubuntu .deb package.
-
 After the 1.0 we may look at the following:
 
 * See if we can get stuff compiling with the -Wold-style-cast flag set.

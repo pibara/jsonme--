@@ -1,0 +1,15 @@
+Package: jsonme++
+Section: development
+Priority: extra
+Essential: no
+Version: 0.9.0-1
+Architecture: amd64
+Installed-Size: 10
+Depends: g++,libjson-glib-dev,libboost-dev
+Maintainer: Rob Meijer <pibara@gmail.com>
+Description: The JSON made easy for C++ library is an easy to use C++ JSON parser lib.
+ Jsonme++ provides a very simple to use API for parsing JSON data in C++. The library is a C++
+ wrapper for the glib json library that is significantly simpler to use than the C API and
+ is also much easyer to use than other JSON libraries currently available for C++.
+ The library curently only supports parsing so its limited in use to applications that parse
+ but not generate JSON.
