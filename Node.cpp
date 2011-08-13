@@ -52,8 +52,18 @@ namespace jsonme {
         return s;
       }
       Node::operator bool() const {
-        Scalar s(*mNode);
-        return s;
+        switch (mNode->nodetype()) {
+           case INVALID:
+              return false;
+           case OBJECT:
+              return true;
+           case ARRAY:
+              return (mNode->size() != 0);
+           case SCALAR:
+              Scalar s(*mNode);
+              return s;   
+        }
+        return false;
       }
       bool Node::isNull() const {
         Scalar s(*mNode);
