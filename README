@@ -1,6 +1,6 @@
-This library is a wrapper for the json-glib library that aims tp provide the user with a trivial alternative API to the API provided by the base json-glib library.
+This library is a wrapper for the json-glib library that aims to provide the user with a trivial alternative API to the API provided by the base json-glib library.
 
-This is an early version of the json-me (JSON made easy) project.
+This is the first version of the json-me (JSON made easy) project.
 
 It has the following issues that I might fix in a later release. Given that I don't have much time to
 work on project like this and given that my priorities lie with different projects, you may consider
