@@ -71,7 +71,7 @@ namespace jsonme {
         switch (json_node_get_node_type(mNode)) {
            case JSON_NODE_OBJECT: return 0;
            case JSON_NODE_ARRAY: break;
-           case JSON_NODE_VALUE: return 0
+           case JSON_NODE_VALUE: return 0;
            case JSON_NODE_NULL: return 0;
         }
         JsonArray *asarray=json_node_get_array(mNode);

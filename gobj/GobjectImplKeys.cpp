@@ -18,7 +18,7 @@
 namespace jsonme {
                 //Constructor.
                 GobjectImplKeys::GobjectImplKeys(JsonNode* node):mKeys() {
-                  Only object type json nodes have keys.
+                  //Only object type json nodes have keys.
                   if (json_node_get_node_type(node) == JSON_NODE_OBJECT) {     
                    JsonObject *asObject=json_node_get_object(node);
                    if (asObject) {
