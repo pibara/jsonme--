@@ -1,15 +1,33 @@
+//JsonMe++ C++ JSON parsing (wrapper) library.
+//Copyright (C) Rob J Meijer 2011  <jsonme@polacanthus.net>
+//
+//This library is free software; you can redistribute it and/or
+//modify it under the terms of the GNU Lesser General Public
+//License as published by the Free Software Foundation; either
+//version 2.1 of the License, or (at your option) any later version.
+//
+//This library is distributed in the hope that it will be useful,
+//but WITHOUT ANY WARRANTY; without even the implied warranty of
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//Lesser General Public License for more details.
+//
+//You should have received a copy of the GNU Lesser General Public
+//License along with this library; if not, write to the Free Software
+//Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
 #include "GobjectImplScalar.hpp"
 #include <boost/lexical_cast.hpp>
 namespace jsonme {
   namespace impl {
+    //Constructor.
     GobjectImplScalar::GobjectImplScalar(JsonNode  * const node):mNode(node),mValue(){
        if (mNode && JSON_NODE_HOLDS_VALUE(mNode)) {
-          json_node_get_value(mNode,&mValue);
+          json_node_get_value(mNode,&mValue); //Fetch the value if possible.
        }
     }
     GobjectImplScalar::~GobjectImplScalar() throw() {
-      g_value_unset(&mValue);
+      g_value_unset(&mValue); //Cleanup after us.
     }
+    //Map glib json lib enum to JsonMe++ enum.
     jsonme::scalartype GobjectImplScalar::scalartype() const {
        switch (json_node_get_value_type(mNode)) {
          case G_TYPE_BOOLEAN :
@@ -29,6 +47,7 @@ namespace jsonme {
              return jsonme::NULLVAL;
        }
     }
+    //Cast any type of scalar to a reasonable float.
     GobjectImplScalar::operator long double() const {
        switch (json_node_get_value_type(mNode)) {
           case G_TYPE_FLOAT: return g_value_get_float(&mValue);
@@ -43,6 +62,7 @@ namespace jsonme {
           default: return 0.0;
        }
     }
+    //Cast any type of scalar to a reasonable int.
     GobjectImplScalar::operator long long() const {
        switch (json_node_get_value_type(mNode)) {
          case G_TYPE_FLOAT: return 0;  //Fixme, probably an exception is in place.
@@ -57,6 +77,7 @@ namespace jsonme {
          default: return 0;
        }
     }
+    //Cast any type of scalar to a reasonable string.
     GobjectImplScalar::operator std::string() const {
        if (! mNode) {
           return "";
@@ -74,6 +95,7 @@ namespace jsonme {
           default: return "";
        }
     }
+    //Cast any type of scalar to a reasonable bool.
     GobjectImplScalar::operator bool() const {
       switch (json_node_get_value_type(mNode)) {
         case G_TYPE_FLOAT: return false;
