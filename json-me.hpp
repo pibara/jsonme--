@@ -53,6 +53,7 @@ namespace jsonme {
       boost::shared_ptr<AbstractScalar> mScalar;
     public:
       Scalar();
+      ~Scalar() throw() {}
       Scalar(AbstractScalar *scalar);
       jsonme::scalartype  scalartype() const;
       operator long double() const;
@@ -91,6 +92,7 @@ namespace jsonme {
     public:
       Node();
       Node(AbstractNode *node);
+      ~Node() throw() {}
       AbstractKeys & keys();
       jsonme::nodetype nodetype() const;
       Node operator[](std::string const & name) const;
