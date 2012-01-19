@@ -20,7 +20,7 @@ namespace jsonme {
   namespace impl {
     //Constructor.
     GobjectImplScalar::GobjectImplScalar(JsonNode  * const node):mNode(node),mValue(){
-       if (mNode && JSON_NODE_HOLDS_VALUE(mNode)) {
+       if (mNode && ((json_node_get_node_type(((mNode))) == (JSON_NODE_VALUE)))) {
           json_node_get_value(mNode,&mValue); //Fetch the value if possible.
        }
     }
