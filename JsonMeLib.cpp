@@ -44,5 +44,12 @@ namespace jsonme {
   Node JsonMeLib::parseFile(std::string const & path) const {
     return mLibImpl->parseFile( path);
   }
+  Node JsonMeLib::object() const {
+    return mLibImpl->object();
+  }
+  Node JsonMeLib::array() const {
+    return mLibImpl->array();
+  }
+
 }
 

@@ -116,5 +116,21 @@ namespace jsonme {
        }
        return false;
     }
+    GobjectImplScalar & GobjectImplScalar::operator=(long double){
+       //FIXME
+       return *this;
+    }
+    GobjectImplScalar & GobjectImplScalar::operator=(long long){
+       //FIXME
+       return *this;
+    }
+    GobjectImplScalar & GobjectImplScalar::operator=(bool){
+       //FIXME
+       return *this;
+    }
+    GobjectImplScalar & GobjectImplScalar::operator=(std::string){
+       //FIXME
+       return *this;
+    }
   }  
 }

@@ -7,10 +7,11 @@ set(libdir      ${CMAKE_INSTALL_PREFIX}/lib)
 set(includedir  ${CMAKE_INSTALL_PREFIX}/include)
 ADD_DEFINITIONS( -Wall -Werror -Weffc++ -Wctor-dtor-privacy -Wuninitialized -Winit-self -Wmissing-include-dirs -Wfloat-equal -Wshadow -Wpointer-arith )
 ADD_DEFINITIONS(-DUSE_GOBJECT_JSON_LIB)
+#FIXME: 
 #Uncomment the following line for ubuntu 11.10, FIXME: use cmake properly to figure this out.
-#ADD_DEFINITIONS( -I/usr/include/json-glib-1.0/ -I/usr/include/glib-2.0/ -I/usr/lib/x86_64-linux-gnu/glib-2.0/include/)
+ADD_DEFINITIONS( -I/usr/include/json-glib-1.0/ -I/usr/include/glib-2.0/ -I/usr/lib/x86_64-linux-gnu/glib-2.0/include/)
 #Uncomment the following line for ubuntu 10.04 LTS.
-ADD_DEFINITIONS( -I/usr/include/json-glib-1.0/ -I/usr/include/glib-2.0/ -I/usr/lib/glib-2.0/include )
+#ADD_DEFINITIONS( -I/usr/include/json-glib-1.0/ -I/usr/include/glib-2.0/ -I/usr/lib/glib-2.0/include )
 add_library(jsonme SHARED JsonMeLib.cpp Scalar.cpp Node.cpp ParseError.cpp gobj/GobjectLibImpl.cpp gobj/GobjectImplParser.cpp gobj/GobjectImplFsTopNode.cpp gobj/GobjectImplStringTopNode.cpp gobj/GobjectImplError.cpp gobj/GobjectImplNode.cpp  gobj/GobjectImplScalar.cpp gobj/GobjectImplKeys.cpp)
 SET_TARGET_PROPERTIES(jsonme PROPERTIES VERSION 1.0.0 SOVERSION 1)
 target_link_libraries(jsonme gobject-2.0 json-glib-1.0)
@@ -43,3 +44,7 @@ add_test(tests.value test_value)
 add_executable(test_keys tests/keys.cpp)
 target_link_libraries(test_keys jsonme)
 add_test(tests.keys test_keys)
+add_executable(test_buildjsonstring tests/buildjsonstring.cpp)
+target_link_libraries(test_buildjsonstring jsonme)
+add_test(tests.buildjsonstring test_buildjsonstring)
+

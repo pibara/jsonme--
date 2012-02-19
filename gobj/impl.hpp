@@ -26,6 +26,8 @@ namespace jsonme {
         GobjectLibImpl();
         Node parse(std::string const & jsonstring) const;
         Node parseFile(std::string const  & path) const ;
+        Node object() const;
+        Node array() const;
     };
   }
 }

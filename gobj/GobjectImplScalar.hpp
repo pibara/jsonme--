@@ -34,7 +34,11 @@ namespace jsonme {
          operator long long() const;
          operator std::string() const;
          operator bool() const;
-         bool isNull() const;   
+         bool isNull() const; 
+         GobjectImplScalar & operator=(long double);
+         GobjectImplScalar & operator=(long long);
+         GobjectImplScalar & operator=(std::string);
+         GobjectImplScalar & operator=(bool);  
     };
   }
 }

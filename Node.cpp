@@ -102,4 +102,24 @@ namespace jsonme {
         Scalar s(*mNode);
         return s.isNull();
       }
+      Node & Node::operator=(long double i){
+          Scalar s(*mNode);
+          s=i;
+          return *this;
+      }
+      Node & Node::operator=(long long i){
+          Scalar s(*mNode);
+          s=i;
+          return *this;
+      }
+      Node & Node::operator=(std::string i){
+          Scalar s(*mNode);
+          s=i;
+          return *this;
+      }
+      Node & Node::operator=(bool i){
+          Scalar s(*mNode);
+          s=i;
+          return *this;
+      }
 }

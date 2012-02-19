@@ -30,5 +30,11 @@ namespace jsonme {
     Node GobjectLibImpl::parseFile(std::string const & path) const { 
       return Node(new GobjectImplFsTopNode(path)); 
     }
+    Node GobjectLibImpl::array() const {
+      return Node(0); //FIXME
+    }
+    Node GobjectLibImpl::object() const {
+      return Node(0); //FIXME
+    }
   }
 }

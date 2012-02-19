@@ -27,6 +27,10 @@ namespace jsonme {
           operator std::string() const { return "";}
           operator bool() const { return false;} 
           bool isNull() const { return true;}
+          NullScalar & operator=(long double) { return *this;}
+          NullScalar & operator=(long long) { return *this;}
+          NullScalar & operator=(std::string) { return *this;}
+          NullScalar & operator=(bool) { return *this;}
       };
       //The default constructor wraps a NullScalar.
       Scalar::Scalar():mScalar(new NullScalar()){}
@@ -55,5 +59,21 @@ namespace jsonme {
       //Simple forwarding of the real cast.
       bool Scalar::isNull() const {
         return mScalar->isNull();
+      }
+      Scalar & Scalar::operator=(long double i) {
+        (*mScalar) = i;
+        return *this;
+      }
+      Scalar & Scalar::operator=(long long i) {
+        (*mScalar) = i;
+        return *this;
+      }
+      Scalar & Scalar::operator=(std::string i) {
+        (*mScalar) = i;
+        return *this;
+      }
+      Scalar & Scalar::operator=(bool i) {
+        (*mScalar) = i;
+        return *this;
       }
 }

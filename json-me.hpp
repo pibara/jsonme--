@@ -47,6 +47,10 @@ namespace jsonme {
       virtual operator std::string() const=0;
       virtual operator bool() const=0;
       virtual bool isNull() const=0;
+      virtual AbstractScalar & operator=(long double in)=0;
+      virtual AbstractScalar & operator=(long long in)=0;
+      virtual AbstractScalar & operator=(std::string in)=0;
+      virtual AbstractScalar & operator=(bool in)=0;
   };
   //A value semantics proxy to the implementation specific scalar.
   class Scalar: public AbstractScalar  {
@@ -61,6 +65,10 @@ namespace jsonme {
       operator std::string() const;
       operator bool() const;
       bool isNull() const;
+      Scalar & operator=(long double in);
+      Scalar & operator=(long long in);
+      Scalar & operator=(std::string in);
+      Scalar & operator=(bool in);
   };
 
   class AbstractKeys {
@@ -106,6 +114,10 @@ namespace jsonme {
       operator std::string() const;
       operator bool() const;
       bool isNull() const;
+      Node & operator=(long double in);
+      Node & operator=(long long in);
+      Node & operator=(std::string in);
+      Node & operator=(bool in);
   };
   //The interface for the library object.
   class AbstractLibImpl {
@@ -113,6 +125,8 @@ namespace jsonme {
         virtual ~AbstractLibImpl() throw() {}
         virtual Node parse(std::string const &  jsonstring) const =0;
         virtual Node parseFile(std::string const & jsonstring) const=0;
+        virtual Node object() const=0;
+        virtual Node array() const=0;
   };
   //A value semantics proxy to the library implementation.
   class JsonMeLib : public AbstractLibImpl {
@@ -122,6 +136,8 @@ namespace jsonme {
       ~JsonMeLib() throw();
       Node parse(std::string const & jsonstring) const;
       Node parseFile(std::string const & path) const;
+      Node object() const;
+      Node array() const;
   };
 }
 
