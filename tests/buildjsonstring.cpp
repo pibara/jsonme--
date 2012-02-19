@@ -11,6 +11,9 @@ int main(int argc,char **argv) {
      object["bar"][(size_t) 1]["a"]="aaaa";
      object["bar"][(size_t) 1]["b"]="bbbb";
      std::string jsonstring = object;
+     if (jsonstring == std::string("")) {
+        return 2;
+     }
      std::cout << jsonstring;
   } catch (jsonme::ParseError &e) {
      return 1;

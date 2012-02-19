@@ -31,10 +31,10 @@ namespace jsonme {
       return Node(new GobjectImplFsTopNode(path)); 
     }
     Node GobjectLibImpl::array() const {
-      return Node(0); //FIXME
+      return this->parse("[]");
     }
     Node GobjectLibImpl::object() const {
-      return Node(0); //FIXME
+      return this->parse("{}");
     }
   }
 }
