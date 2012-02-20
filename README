@@ -11,8 +11,6 @@ After the 1.0 we may look at the following:
 * See if we can get stuff compiling with the -Wold-style-cast flag set.
 * I didn't find a list of the Gtype's that json-glib can produce, there are probably some pieces of 
   dead code in gobj/GobjectImplScalar.cpp and there might be one missing.
-* The CMakeLists.txt doesn't look for its dependencies and just adds -I flags that happen to be right 
-  on Ubuntu 11.4. Should do some real checking.
 * I didn't create non of the operator<< stuff for making usage ostream usage easy. Tried to for half 
   an hour and kept getting useless messages from my compiler. Should make the library even more 
   friendly if we could fix this.
