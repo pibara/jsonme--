@@ -107,6 +107,7 @@ namespace jsonme {
       Node operator[](char const * const) const;
       size_t size() const;
       Node operator[](size_t index) const ;
+      Node operator[](int index) const ; //For literal use only
       jsonme::scalartype scalartype() const;
       operator Scalar() const;
       operator long double() const;

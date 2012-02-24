@@ -57,6 +57,11 @@ namespace jsonme {
       Node Node::operator[](size_t index) const {
         return (*mNode)[index];
       }
+      //This one is there for the sole reason that literal 0 is ambiguous.
+      Node Node::operator[](int index) const {
+        size_t realindex=index;
+        return (*mNode)[realindex];
+      }
       //Simpe trick to forward this method to the implementation.
       Node::operator Scalar() const {
         return (*mNode);

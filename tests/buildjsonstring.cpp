@@ -6,10 +6,10 @@ int main(int argc,char **argv) {
      jsonme::Node object=jsonlib.object();
      long long x=-12345;
      object["foo"]=x;
-     object["bar"][(size_t) 0]["a"]="aa";
-     object["bar"][(size_t) 0]["b"]="bb";
-     object["bar"][(size_t) 1]["a"]="aaaa";
-     object["bar"][(size_t) 1]["b"]="bbbb";
+     object["bar"][0]["a"]="aa";
+     object["bar"][0]["b"]="bb";
+     object["bar"][1]["a"]="aaaa";
+     object["bar"][1]["b"]="bbbb";
      std::string jsonstring = object;
      if (jsonstring == std::string("")) {
         return 2;
