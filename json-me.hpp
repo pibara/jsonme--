@@ -36,6 +36,13 @@ namespace jsonme {
       ~ParseError() throw();
       const char * what() const throw();
   }; 
+  class JsonStructureError: public std::exception {
+      std::string mMessage;
+    public:
+      JsonStructureError(std::string msg);
+      ~JsonStructureError() throw();
+      const char * what() const throw();
+  };
   //The scalar has a type and can be cast to that type. Casting to any other type shall
   //result in a lexical conversion if possible or a default null value if not.
   class AbstractScalar {
@@ -95,6 +102,7 @@ namespace jsonme {
         virtual size_t size() const=0;
         virtual Node operator[](size_t index) const=0;
         virtual operator Scalar() const=0;
+        void autoVivivicate(jsonme::nodetype) {} //Should be refactored, first get autovivification working the non-clean way.
   };
   //A value semantics proxy to the implementation specific node.
   class Node: public AbstractNode, public AbstractScalar {
@@ -102,7 +110,8 @@ namespace jsonme {
     public:
      // Node();
       Node(AbstractNode *node);
-      Node(AbstractNode *node,AbstractNode const *parent);
+      Node(AbstractNode *node,AbstractNode const *parent,std::string key);
+      Node(AbstractNode *node,AbstractNode const *parent,size_t index);
       ~Node() throw() {}
       AbstractKeys & keys();
       jsonme::nodetype nodetype() const;

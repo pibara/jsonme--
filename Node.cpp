@@ -27,13 +27,27 @@ namespace jsonme {
           NullNode(AbstractNode const *parent):mParent(parent),mNullKeys(){}
           AbstractKeys & keys() { return mNullKeys;}
           jsonme::nodetype nodetype() const {return INVALID;}
-          Node operator[](std::string const & name) const { return Node(0,this);}
+          Node operator[](std::string const & name) const { return Node(0,this,name);}
           size_t size() const { return 0;}
-          Node operator[](size_t index) const { return Node(0,this);}
+          Node operator[](size_t index) const { return Node(0,this,index);}
           operator Scalar() const { return Scalar(this); }
       };
+      class NullObjectMember: public NullNode {
+          std::string mKey;
+        public:
+          NullObjectMember(AbstractNode const *parent,std::string key):NullNode(parent),mKey(key){}
+          ~NullObjectMember() throw(){}
+      };
+      class NullArrayMember: public NullNode {
+          size_t mIndex;
+        public:
+          NullArrayMember(AbstractNode const *parent,size_t index):NullNode(parent),mIndex(index){}
+          ~NullArrayMember() throw(){}
+      };
+
       Node::Node(AbstractNode *node):mNode(node){}
-      Node::Node(AbstractNode *node,AbstractNode const *parent):mNode(new NullNode(parent)){}
+      Node::Node(AbstractNode *node,AbstractNode const *parent,std::string key):mNode(new NullObjectMember(parent,key)){}
+      Node::Node(AbstractNode *node,AbstractNode const *parent,size_t index):mNode(new NullArrayMember(parent,index)){}
       //Simply forward method to the implementation.
       jsonme::nodetype Node::nodetype() const {
          return mNode->nodetype();
@@ -109,23 +123,63 @@ namespace jsonme {
         return s.isNull();
       }
       Node & Node::operator=(long double i){
-          Scalar s(*mNode);
-          s=i;
+          switch (mNode->nodetype()) {
+              case OBJECT: //Can't assign a long double to an existing object
+                  throw JsonStructureError("Can't assign a float scalar value to an existing object");
+              case ARRAY: // Can't assign a long double to an excisting array
+                  throw JsonStructureError("Can't assign a float scalar value to an existing array");
+              case INVALID: //For invalid nodes try autovivification first
+                  mNode->autoVivivicate(SCALAR);
+                  //Intentional fall-truegh, if autoVivivicate succeeds we have an empty scalar, if it doesnt it throws.       
+              case SCALAR: //Its a scalar, we can assign it a new value.
+                  Scalar s(*mNode);
+                  s=i;
+          }
           return *this;
       }
       Node & Node::operator=(long long i){
-          Scalar s(*mNode);
-          s=i;
+          switch (mNode->nodetype()) {
+              case OBJECT: //Can't assign a long double to an existing object
+                  throw JsonStructureError("Can't assign an integer scalar value to an existing object");
+              case ARRAY: // Can't assign a long double to an excisting array
+                  throw JsonStructureError("Can't assign an integer scalar value to an existing array");
+              case INVALID: //For invalid nodes try autovivification first
+                  mNode->autoVivivicate(SCALAR);
+                  //Intentional fall-truegh, if autoVivivicate succeeds we have an empty scalar, if it doesnt it throws.       
+              case SCALAR: //Its a scalar, we can assign it a new value.
+                  Scalar s(*mNode);
+                  s=i;
+          }
           return *this;
       }
       Node & Node::operator=(std::string i){
-          Scalar s(*mNode);
-          s=i;
+          switch (mNode->nodetype()) {
+              case OBJECT: //Can't assign a long double to an existing object
+                  throw JsonStructureError("Can't assign a string scalar value to an existing object");
+              case ARRAY: // Can't assign a long double to an excisting array
+                  throw JsonStructureError("Can't assign an integer scalar value to an existing array");
+              case INVALID: //For invalid nodes try autovivification first
+                  mNode->autoVivivicate(SCALAR);
+                  //Intentional fall-truegh, if autoVivivicate succeeds we have an empty scalar, if it doesnt it throws.       
+              case SCALAR: //Its a scalar, we can assign it a new value.
+                  Scalar s(*mNode);
+                  s=i;
+          }
           return *this;
       }
       Node & Node::operator=(bool i){
-          Scalar s(*mNode);
-          s=i;
+          switch (mNode->nodetype()) {
+              case OBJECT: //Can't assign a long double to an existing object
+                  throw JsonStructureError("Can't assign a boolean scalar value to an existing object");
+              case ARRAY: // Can't assign a long double to an excisting array
+                  throw JsonStructureError("Can't assign a boolean scalar value to an existing array");
+              case INVALID: //For invalid nodes try autovivification first
+                  mNode->autoVivivicate(SCALAR);
+                  //Intentional fall-truegh, if autoVivivicate succeeds we have an empty scalar, if it doesnt it throws.       
+              case SCALAR: //Its a scalar, we can assign it a new value.
+                  Scalar s(*mNode);
+                  s=i;
+          }
           return *this;
       }
 }
