@@ -39,13 +39,13 @@ namespace jsonme {
      Node GobjectImplNode::operator[](std::string const & name) const {
         //Calling this operator on a non object returns a wrapped NullNode.
         if (!mNode) {
-          return Node();
+          return Node(0,this);
         }
         switch (json_node_get_node_type(mNode)) {
            case JSON_NODE_OBJECT: break;
-           case JSON_NODE_ARRAY: return Node();
-           case JSON_NODE_VALUE: return Node();
-           case JSON_NODE_NULL: return Node();
+           case JSON_NODE_ARRAY: return Node(0,this);
+           case JSON_NODE_VALUE: return Node(0,this);
+           case JSON_NODE_NULL: return Node(0,this);
         }
         JsonObject *asobject=json_node_get_object(mNode);
         if (asobject) {
@@ -56,10 +56,10 @@ namespace jsonme {
             return Node(new GobjectImplNode(member));
           } else {
             //If there uis no such property return a wrapped NullNode
-            return Node();
+            return Node(0,this);
           }
         } else {
-          return Node(); //This is probably dead code, just there in case.
+          return Node(0,this); //This is probably dead code, just there in case.
         }
      }
      
@@ -85,13 +85,13 @@ namespace jsonme {
      Node GobjectImplNode::operator[](size_t index) const {
         //Calling this operator on a non array returns a wrapped NullNode.
         if (!mNode) {
-           return Node();
+           return Node(0,this);
         }
         switch (json_node_get_node_type(mNode)) {
-           case JSON_NODE_OBJECT: return Node();
+           case JSON_NODE_OBJECT: return Node(0,this);
            case JSON_NODE_ARRAY: break;
-           case JSON_NODE_VALUE: return Node();
-           case JSON_NODE_NULL: return Node();
+           case JSON_NODE_VALUE: return Node(0,this);
+           case JSON_NODE_NULL: return Node(0,this);
         }
         JsonArray *asarray=json_node_get_array(mNode);
         if (asarray) {
@@ -100,10 +100,10 @@ namespace jsonme {
           if (member) {
              return Node(new GobjectImplNode(member)); //return the sub node.
           } else {
-            return Node(); //Or a wraped NullNode if we can't find it.
+            return Node(0,this); //Or a wraped NullNode if we can't find it.
           }
         } else {
-          return Node(); //This is probably dead code, just there in case.
+          return Node(0,this); //This is probably dead code, just there in case.
         }
      }
      GobjectImplNode::operator Scalar() const {

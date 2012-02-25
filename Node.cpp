@@ -19,20 +19,21 @@
 namespace jsonme {
       //Implementing the NullObject pattern for the AbstractNode interface.
       class NullNode: public AbstractNode {
+          AbstractNode const *mParent;
           NullKeys mNullKeys; //If we need to return an AbstractKeys object reference, a NullKeys object is needed. 
+          NullNode(const jsonme::NullNode&):mParent(0),mNullKeys(){} //Copy constructor private to disable copy.
+          jsonme::NullNode& operator=(const jsonme::NullNode&) { return *this;} //Assignment operator private to disable copy.
         public:
-          NullNode():mNullKeys(){}
+          NullNode(AbstractNode const *parent):mParent(parent),mNullKeys(){}
           AbstractKeys & keys() { return mNullKeys;}
           jsonme::nodetype nodetype() const {return INVALID;}
-          Node operator[](std::string const & name) const { return Node();}
+          Node operator[](std::string const & name) const { return Node(0,this);}
           size_t size() const { return 0;}
-          Node operator[](size_t index) const { return Node();}
+          Node operator[](size_t index) const { return Node(0,this);}
           operator Scalar() const { return Scalar(); }
       };
-      //The default constructor creates a node wrapping a NullNode.
-      Node::Node():mNode(new NullNode()){}
-      //A second constructor wraps some kind of  AbstractNode subclass.
       Node::Node(AbstractNode *node):mNode(node){}
+      Node::Node(AbstractNode *node,AbstractNode const *parent):mNode(new NullNode(parent)){}
       //Simply forward method to the implementation.
       jsonme::nodetype Node::nodetype() const {
          return mNode->nodetype();

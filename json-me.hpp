@@ -98,8 +98,9 @@ namespace jsonme {
   class Node: public AbstractNode, public AbstractScalar {
       boost::shared_ptr<AbstractNode> mNode;
     public:
-      Node();
+     // Node();
       Node(AbstractNode *node);
+      Node(AbstractNode *node,AbstractNode const *parent);
       ~Node() throw() {}
       AbstractKeys & keys();
       jsonme::nodetype nodetype() const;
