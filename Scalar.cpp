@@ -20,7 +20,11 @@
 namespace jsonme {
       //This implements the NullObject design pattern for the AbstractScalar interface.
       class NullScalar: public AbstractScalar {
+          AbstractNode const *mParent;
+          NullScalar(NullScalar const &c);
+          jsonme::NullScalar& operator=(const jsonme::NullScalar&);
         public:
+          NullScalar(AbstractNode const *parent):mParent(parent){}
           jsonme::scalartype scalartype() const { return NULLVAL;}
           operator long double() const { return 0;}
           operator long long() const { return 0;}
@@ -33,7 +37,8 @@ namespace jsonme {
           NullScalar & operator=(bool) { return *this;}
       };
       //The default constructor wraps a NullScalar.
-      Scalar::Scalar():mScalar(new NullScalar()){}
+      //Scalar::Scalar():mScalar(new NullScalar()){}
+      Scalar::Scalar(AbstractNode const *parent):mScalar(new NullScalar(parent)){}
       //Alternative constructor wraps a dynamically allocated  implementation of the AbstractScalar interface.
       Scalar::Scalar(AbstractScalar *scalar):mScalar(scalar){}
       //Simple method forwarding.

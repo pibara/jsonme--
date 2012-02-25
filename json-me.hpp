@@ -52,13 +52,15 @@ namespace jsonme {
       virtual AbstractScalar & operator=(std::string in)=0;
       virtual AbstractScalar & operator=(bool in)=0;
   };
+  class AbstractNode;
   //A value semantics proxy to the implementation specific scalar.
   class Scalar: public AbstractScalar  {
       boost::shared_ptr<AbstractScalar> mScalar;
     public:
-      Scalar();
+      //Scalar();
       ~Scalar() throw() {}
       Scalar(AbstractScalar *scalar);
+      Scalar(AbstractNode const *parent);
       jsonme::scalartype  scalartype() const;
       operator long double() const;
       operator long long() const;

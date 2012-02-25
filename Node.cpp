@@ -30,7 +30,7 @@ namespace jsonme {
           Node operator[](std::string const & name) const { return Node(0,this);}
           size_t size() const { return 0;}
           Node operator[](size_t index) const { return Node(0,this);}
-          operator Scalar() const { return Scalar(); }
+          operator Scalar() const { return Scalar(this); }
       };
       Node::Node(AbstractNode *node):mNode(node){}
       Node::Node(AbstractNode *node,AbstractNode const *parent):mNode(new NullNode(parent)){}

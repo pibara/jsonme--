@@ -109,12 +109,12 @@ namespace jsonme {
      GobjectImplNode::operator Scalar() const {
         //Only scalar type node's can be cast to a scalar. Other node's return a wrapped NullScalar.
         if (!mNode) {
-           return Scalar();
+           return Scalar(this);
         }
         if (this->nodetype() == jsonme::SCALAR) {
           return Scalar(new GobjectImplScalar(mNode));
         } else {
-          return Scalar();
+          return Scalar(this);
         } 
      }
   }
