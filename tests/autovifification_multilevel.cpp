@@ -4,8 +4,7 @@ int main(int argc,char **argv) {
   jsonme::JsonMeLib jsonlib;
   try {
      jsonme::Node object=jsonlib.object();
-     long long x=-12345;
-     object["foo"]=x;
+     object["bar"][3]["a"]="aa";
      std::string jsonstring = object;
      if (jsonstring == std::string("")) {
         return 2;
